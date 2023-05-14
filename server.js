@@ -4,11 +4,12 @@ const PORT = 3000;
 const MongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config()
 
 app.use(express.static('public'));
 
 let db,
-    dbConnectionStr = '',
+    dbConnectionStr = process.env.CONNECTION_STR,
     dbName = 'people';
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
