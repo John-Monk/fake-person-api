@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const MongoClient = require('mongodb').MongoClient;
+const fs = require('fs');
+const path = require('path');
+
+app.use(express.static('public'));
 
 let db,
     dbConnectionStr = '',
