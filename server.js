@@ -14,6 +14,18 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
 })
 .catch(e => console.error(e))
 
+app.get('/api', (req, res) => {
+  db.collection('person')
+    .find()
+    .toArray()
+    .then(results => {
+      res.json(results);
+    })
+    .catch(e => {
+      res.status(500).json({ error: 'An error occurred.' });
+    });
+});
+
 app.listen(PORT, (req, res) => {
     console.log(`Connected to Server on Port ${PORT}`)
 });
