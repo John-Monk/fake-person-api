@@ -30,6 +30,15 @@ app.get('/api', (req, res) => {
     });
 });
 
+app.get('/api/images/:id', (req, res) => {
+    const imagePath = path.join(__dirname, 'public', 'photos', `${req.params.id}.jpg`)
+    if(fs.existsSync(imagePath)){
+        res.sendFile(imagePath)
+    } else {
+        res.status(404).send('Image not found');
+    }
+});
+
 app.listen(PORT, (req, res) => {
     console.log(`Connected to Server on Port ${PORT}`)
 });
